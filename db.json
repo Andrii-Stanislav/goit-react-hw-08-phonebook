@@ -1,0 +1,14 @@
+{
+  "contacts": [
+    {
+      "id": "14dcec98-d06a-4db0-9856-41ece433bf14",
+      "name": "Gena",
+      "number": "222-22-22"
+    },
+    {
+      "id": "65f33ad6-cbbc-4ba2-88b1-d3d4f9dcccbb",
+      "name": "Andrii",
+      "number": "111-11-11"
+    }
+  ]
+}

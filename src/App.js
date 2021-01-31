@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Suspense } from 'react';
+import { Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+// import { CSSTransition } from 'react-transition-group';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import routes from './routes';
+import { getCurrentUser } from './redux/auth/auth-operations';
+
+import PrivateRoute from './Components/PrivateRoute';
+import PublicRoute from './Components/PublicRoute';
+import AppBar from './Components/AppBar';
+import Container from './Components/Container';
+
+import HomePage from './views/HomePage';
+import Contacts from './views/Contacts';
+import LoginPage from './views/LoginPage';
+import Register from './views/Register';
+
+class App extends Component {
+  state = {};
+
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
+
+  render() {
+    return (
+      <>
+        <AppBar />
+        <Container>
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <Switch>
+              <PublicRoute exact path={routes.home} component={HomePage} />
+              <PrivateRoute
+                path={routes.contacts}
+                component={Contacts}
+                redirectTo={routes.login}
+              />
+              <PublicRoute
+                path={routes.login}
+                restricted
+                component={LoginPage}
+                redirectTo={routes.contacts}
+              />
+              <PublicRoute
+                path={routes.register}
+                restricted
+                component={Register}
+                redirectTo={routes.contacts}
+              />
+              <Redirect to={routes.home} />
+            </Switch>
+          </Suspense>
+        </Container>
+      </>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = {
+  getCurrentUser: getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);
