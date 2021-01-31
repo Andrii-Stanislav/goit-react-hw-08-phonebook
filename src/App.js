@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { CSSTransition } from 'react-transition-group';
@@ -11,10 +11,18 @@ import PublicRoute from './Components/PublicRoute';
 import AppBar from './Components/AppBar';
 import Container from './Components/Container';
 
-import HomePage from './views/HomePage';
-import Contacts from './views/Contacts';
-import LoginPage from './views/LoginPage';
-import Register from './views/Register';
+const HomePage = lazy(() =>
+  import('./views/HomePage' /* webpackChunkName: "home-page-view" */),
+);
+const Contacts = lazy(() =>
+  import('./views/Contacts' /* webpackChunkName: "contacts-view" */),
+);
+const LoginPage = lazy(() =>
+  import('./views/LoginPage' /* webpackChunkName: "loading-view" */),
+);
+const Register = lazy(() =>
+  import('./views/Register' /* webpackChunkName: "register-view" */),
+);
 
 class App extends Component {
   state = {};
