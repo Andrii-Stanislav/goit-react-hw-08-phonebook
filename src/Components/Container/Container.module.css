@@ -1,4 +1,6 @@
-
+.mainContainer {
+  padding: 0 5px;
+}
 
 .container {
   position: relative;
