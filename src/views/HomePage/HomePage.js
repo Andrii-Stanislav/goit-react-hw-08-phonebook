@@ -3,6 +3,10 @@ import { CSSTransition } from 'react-transition-group';
 
 import styles from './HomePage.module.css';
 
+import gif from '../../images/homePage.gif';
+
+console.dir(gif);
+
 const HomePage = () => {
   return (
     <CSSTransition
@@ -13,6 +17,9 @@ const HomePage = () => {
       unmountOnExit
     >
       <div className={styles.homePage}>
+        <div className={styles.imgBox}>
+          <img className={styles.img} src={gif} alt="gif" />
+        </div>
         <h1 className={styles.title}>Welcome to the contacts app</h1>
       </div>
     </CSSTransition>
