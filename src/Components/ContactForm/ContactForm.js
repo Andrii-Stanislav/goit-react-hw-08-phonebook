@@ -10,7 +10,6 @@ class ContactForm extends Component {
   state = {
     name: '',
     number: '',
-    customNumber: '',
   };
 
   heandleInput = event => {
@@ -65,7 +64,7 @@ class ContactForm extends Component {
           <input
             className={styles.input}
             name="number"
-            type="tel"
+            type="text"
             pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
             maxLength="9"
             placeholder="Cool phone number"
