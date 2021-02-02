@@ -48,7 +48,7 @@ const error = createReducer(null, {
   [getCurrentUserError]: errorFunc,
 });
 
-const loadingReducer = createReducer(false, {
+const loading = createReducer(false, {
   [registerRequest]: () => true,
   [registerSuccess]: () => false,
   [registerError]: () => false,
@@ -68,5 +68,5 @@ export default combineReducers({
   isAuthenticated,
   token,
   error,
-  loadingReducer,
+  loading,
 });

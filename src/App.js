@@ -10,6 +10,7 @@ import PrivateRoute from './Components/PrivateRoute';
 import PublicRoute from './Components/PublicRoute';
 import AppBar from './Components/AppBar';
 import Container from './Components/Container';
+import Loading from './Components/Loading';
 
 const HomePage = lazy(() =>
   import('./views/HomePage' /* webpackChunkName: "home-page-view" */),
@@ -36,7 +37,7 @@ class App extends Component {
       <>
         <AppBar />
         <Container>
-          <Suspense fallback={<p>Загружаем...</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Switch>
               <PublicRoute exact path={routes.home} component={HomePage} />
               <PrivateRoute
@@ -59,6 +60,7 @@ class App extends Component {
               <Redirect to={routes.home} />
             </Switch>
           </Suspense>
+          <Loading />
         </Container>
       </>
     );

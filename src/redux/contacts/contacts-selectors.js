@@ -4,6 +4,8 @@ const getContacts = state => state.contacts.contacts;
 
 const getFilter = state => state.filter;
 
+const getIsLoadingContacts = state => state.contacts.loading;
+
 const getContactsLength = state => getContacts(state)?.length;
 
 const getFilteredContacts = createSelector(
@@ -14,4 +16,10 @@ const getFilteredContacts = createSelector(
     ),
 );
 
-export { getContacts, getFilter, getFilteredContacts, getContactsLength };
+export {
+  getContacts,
+  getFilter,
+  getFilteredContacts,
+  getContactsLength,
+  getIsLoadingContacts,
+};
